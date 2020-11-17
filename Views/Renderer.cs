@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Paddlist.Models;
 using System;
@@ -11,12 +12,13 @@ namespace Paddlist.Views
     {
         private SpriteBatch spriteBatch;
         private GraphicsDevice graphicsDevice;
-        private World world;
+        private TextureSet textures;
 
-        public Renderer(GraphicsDeviceManager graphics, World world)
+        public Renderer(GraphicsDeviceManager graphics, World world, ContentManager content)
         {
             graphicsDevice = graphics.GraphicsDevice;
             spriteBatch = new SpriteBatch(graphicsDevice);
+            textures = new TextureSet(content);
 
             // Set window size & title
             graphics.PreferredBackBufferWidth = world.Width;
@@ -24,7 +26,7 @@ namespace Paddlist.Views
             graphics.ApplyChanges();
         }
 
-        public void Render()
+        public void Render(World world)
         {
             graphicsDevice.Clear(Color.White);
         }
