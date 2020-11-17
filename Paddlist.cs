@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Paddlist.Models;
 using Paddlist.Views;
 
 namespace Paddlist
@@ -8,6 +9,7 @@ namespace Paddlist
     public class Paddlist : Game
     {
         private GraphicsDeviceManager graphics;
+        private World world;
         private Renderer renderer;
 
         public Paddlist()
@@ -24,7 +26,8 @@ namespace Paddlist
 
         protected override void LoadContent()
         {
-            renderer = new Renderer(graphics);
+            world = new World();
+            renderer = new Renderer(graphics, world);
         }
 
         protected override void Update(GameTime gameTime)
