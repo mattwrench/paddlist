@@ -4,28 +4,35 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Paddlist
 {
-    public class Game1 : Game
+    public class Paddlist : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private const int WindowWidth = 1280;
+        private const int WindowHeight = 720;
 
-        public Game1()
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+
+        public Paddlist()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Set window size & title
+            graphics.PreferredBackBufferWidth = WindowWidth;
+            graphics.PreferredBackBufferHeight = WindowHeight;
+            graphics.ApplyChanges();
+            Window.Title = "Paddlist";
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
