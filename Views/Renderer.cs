@@ -39,6 +39,12 @@ namespace Paddlist.Views
             drawPaddle(world.Player);
             drawPaddle(world.Enemy);
 
+            // Balls
+            foreach (Ball ball in world.Balls)
+            {
+                drawEntity(ball, textures.Ball);
+            }
+
             spriteBatch.End();
         }
 

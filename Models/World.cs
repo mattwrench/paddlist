@@ -11,11 +11,12 @@ namespace Paddlist.Models
         public readonly int Height = 720;
 
         public Paddle Player, Enemy;
-
+        public List<Ball> Balls;
         public World()
         {
             Player = new Paddle(Paddle.Team.Left, this);
             Enemy = new Paddle(Paddle.Team.Right, this);
+            Balls = new List<Ball>();
         }
     }
 }
