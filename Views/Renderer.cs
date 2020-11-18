@@ -32,6 +32,9 @@ namespace Paddlist.Views
 
             spriteBatch.Begin();
 
+            // Background
+            spriteBatch.Draw(textures.Background, new Rectangle(0, 0, world.Width, world.Height), Color.White);
+
             // Paddles
             drawPaddle(world.Player);
             drawPaddle(world.Enemy);
