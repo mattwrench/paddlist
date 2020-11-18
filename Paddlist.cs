@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Paddlist.Controllers;
 using Paddlist.Models;
 using Paddlist.Views;
 
@@ -10,6 +11,7 @@ namespace Paddlist
     {
         private GraphicsDeviceManager graphics;
         private World world;
+        private ControllerSet controllers;
         private Renderer renderer;
 
         public Paddlist()
@@ -27,16 +29,14 @@ namespace Paddlist
         protected override void LoadContent()
         {
             world = new World();
+            controllers = new ControllerSet(world);
             renderer = new Renderer(graphics, world, Content);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
-
+            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            controllers.Update(dt);
             base.Update(gameTime);
         }
 
