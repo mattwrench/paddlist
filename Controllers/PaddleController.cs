@@ -15,7 +15,19 @@ namespace Paddlist.Controllers
 
         protected override void boundsCheck(Entity entity)
         {
-            // TODO
+            // Top wall
+            if (entity.Bounds.Y < 0)
+            {
+                entity.Bounds.Y = 0;
+                entity.Position.Y = entity.Bounds.Y + entity.Bounds.Height / 2;
+            }
+
+            // Bottom wall
+            else if (entity.Bounds.Y + entity.Bounds.Height > world.Height)
+            {
+                entity.Bounds.Y = world.Height - entity.Bounds.Height;
+                entity.Position.Y = entity.Bounds.Y + entity.Bounds.Height / 2;
+            }
         }
     }
 }
