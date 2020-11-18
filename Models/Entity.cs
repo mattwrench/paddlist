@@ -20,5 +20,12 @@ namespace Paddlist.Models
             Velocity = new Vector2();
             Bounds = new Rectangle();
         }
+
+        // Update Bounds.X/Y from Position.X/Y
+        public void SetBounds()
+        {
+            Bounds.X = (int)(Position.X - Bounds.Width / 2);
+            Bounds.Y = (int)(Position.Y - Bounds.Height / 2);
+        }
     }
 }
