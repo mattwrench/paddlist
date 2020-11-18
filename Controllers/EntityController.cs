@@ -17,7 +17,7 @@ namespace Paddlist.Controllers
         }
 
         public abstract void Update(float dt);
-        protected abstract void boundsCheck(Entity entity);
+        protected abstract void boundsCheck(Entity entity); // Keep entities inside screen
 
         // Add velocity * dt to position
         protected void setPosition(Entity entity, float dt)
