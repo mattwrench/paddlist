@@ -40,9 +40,20 @@ namespace Paddlist.Controllers
         }
 
         // Handle collisions between balls and paddles
+        // Velocity conditions prevent balls clipping to paddles
         private void collisionDetect(Ball ball)
         {
-            // TODO
+            // Player
+            if (ball.Bounds.Intersects(world.Player.Bounds) && ball.Velocity.X < 0)
+            {
+                ball.Velocity.X *= -1;
+            }
+
+            // Enemy
+            else if (ball.Bounds.Intersects(world.Enemy.Bounds) && ball.Velocity.X > 0)
+            {
+                ball.Velocity.X *= -1;
+            }
         }
 
         protected override void boundsCheck(Entity entity)
