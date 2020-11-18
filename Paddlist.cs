@@ -36,6 +36,7 @@ namespace Paddlist
         protected override void Update(GameTime gameTime)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Input.Update();
             controllers.Update(dt);
             base.Update(gameTime);
         }

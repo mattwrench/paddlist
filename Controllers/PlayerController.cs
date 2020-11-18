@@ -1,4 +1,5 @@
-﻿using Paddlist.Models;
+﻿using Microsoft.Xna.Framework;
+using Paddlist.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,7 +22,11 @@ namespace Paddlist.Controllers
 
         protected override void setVelocity(Paddle paddle)
         {
-            // TODO
+            paddle.Velocity = new Vector2();
+            if (Input.MovingUp)
+                paddle.Velocity.Y -= paddle.TopSpeed;
+            if (Input.MovingDown)
+                paddle.Velocity.Y += paddle.TopSpeed;
         }
     }
 }
