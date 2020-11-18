@@ -29,6 +29,30 @@ namespace Paddlist.Views
         public void Render(World world)
         {
             graphicsDevice.Clear(Color.White);
+
+            spriteBatch.Begin();
+
+            // Paddles
+            drawPaddle(world.Player);
+            drawPaddle(world.Enemy);
+
+            spriteBatch.End();
+        }
+
+        private void drawEntity(Entity entity, Texture2D texture)
+        {
+            spriteBatch.Draw(texture, entity.Bounds, Color.White);
+        }
+
+        private void drawPaddle(Paddle paddle)
+        {
+            Texture2D texture;
+            if (paddle.Side == Paddle.Team.Left)
+                texture = textures.PaddleRed;
+            else // Right
+                texture = textures.PaddleBlue;
+
+            drawEntity(paddle, texture);
         }
     }
 }

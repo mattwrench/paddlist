@@ -9,5 +9,13 @@ namespace Paddlist.Models
     {
         public readonly int Width = 1280;
         public readonly int Height = 720;
+
+        public Paddle Player, Enemy;
+
+        public World()
+        {
+            Player = new Paddle(Paddle.Team.Left, this);
+            Enemy = new Paddle(Paddle.Team.Right, this);
+        }
     }
 }
