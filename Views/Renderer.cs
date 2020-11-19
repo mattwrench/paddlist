@@ -32,7 +32,7 @@ namespace Paddlist.Views
             graphics.ApplyChanges();
         }
 
-        public void Render()
+        public void Render(Paddlist.GameState gameState)
         {
             bool translucent = false;
 
@@ -59,7 +59,14 @@ namespace Paddlist.Views
 
             drawIcons(translucent);
 
+            drawText(gameState);
+
             spriteBatch.End();
+        }
+
+        private void drawText(Paddlist.GameState gameState)
+        {
+            // TODO
         }
 
         private void drawIcons(bool translucent)
