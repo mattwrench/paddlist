@@ -14,6 +14,7 @@ namespace Paddlist.Models
         private const int OffWall = 50;
 
         public Team Side;
+        public int Score;
 
         public Paddle(Team team, World world)
         {
@@ -23,6 +24,7 @@ namespace Paddlist.Models
             TopSpeed = 550;
 
             Side = team;
+            Score = 0;
 
             // Set position
             if (team == Team.Left)

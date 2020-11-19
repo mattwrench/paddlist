@@ -10,12 +10,18 @@ namespace Paddlist.Views
 {
     class Renderer
     {
+        private const int ScoreY = 18;
+        private const int DigitWidth = 37;
+        private const int DigitSpacing = 22;
+
+        private World world;
         private SpriteBatch spriteBatch;
         private GraphicsDevice graphicsDevice;
         private TextureSet textures;
 
         public Renderer(GraphicsDeviceManager graphics, World world, ContentManager content)
         {
+            this.world = world;
             graphicsDevice = graphics.GraphicsDevice;
             spriteBatch = new SpriteBatch(graphicsDevice);
             textures = new TextureSet(content);
@@ -26,8 +32,10 @@ namespace Paddlist.Views
             graphics.ApplyChanges();
         }
 
-        public void Render(World world)
+        public void Render()
         {
+            bool translucent = false;
+
             graphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin();
@@ -45,7 +53,43 @@ namespace Paddlist.Views
                 drawEntity(ball, textures.Ball);
             }
 
+
+            drawScore(world.Player.Score, world.Player.Side, translucent);
+            drawScore(world.Enemy.Score, world.Enemy.Side, translucent);
+
             spriteBatch.End();
+        }
+
+        private void drawScore(int score, Paddle.Team side, bool translucent)
+        {
+            // Single digit
+            if (score < 10)
+            {
+                Rectangle source = new Rectangle(score * DigitWidth, 0, DigitWidth, textures.GetNumbers(translucent).Height);
+                Rectangle dest = new Rectangle(0, ScoreY, DigitWidth, textures.GetNumbers(translucent).Height);
+                if (side == Paddle.Team.Left)
+                    dest.X = world.Width / 4;
+                else // right
+                    dest.X = world.Width / 4 * 3;
+                spriteBatch.Draw(textures.GetNumbers(translucent), dest, source, Color.White);
+            }
+
+            // Double digit
+            else
+            {
+                Rectangle source = new Rectangle((score / 10) * DigitWidth, 0, DigitWidth, textures.GetNumbers(translucent).Height);
+                Rectangle dest = new Rectangle(0, ScoreY, DigitWidth, textures.GetNumbers(translucent).Height);
+                if (side == Paddle.Team.Left)
+                    dest.X = world.Width / 4;
+                else // right
+                    dest.X = world.Width / 4 * 3;
+                dest.X -= DigitSpacing;
+                spriteBatch.Draw(textures.GetNumbers(translucent), dest, source, Color.White);
+
+                source = new Rectangle((score % 10) * DigitWidth, 0, DigitWidth, textures.GetNumbers(translucent).Height);
+                dest.X += DigitSpacing * 2;
+                spriteBatch.Draw(textures.GetNumbers(translucent), dest, source, Color.White);
+            }
         }
 
         private void drawEntity(Entity entity, Texture2D texture)

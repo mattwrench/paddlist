@@ -43,7 +43,7 @@ namespace Paddlist
 
         protected override void Draw(GameTime gameTime)
         {
-            renderer.Render(world);
+            renderer.Render();
             base.Draw(gameTime);
         }
     }

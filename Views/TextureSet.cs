@@ -17,6 +17,7 @@ namespace Paddlist.Views
         private Texture2D iconPause, iconPauseTrans;
         private Texture2D iconPlay, iconPlayTrans;
         private Texture2D iconRestart, iconRestartTrans;
+        private Texture2D numbers, numbersTrans;
 
         public TextureSet(ContentManager content)
         {
@@ -36,6 +37,9 @@ namespace Paddlist.Views
             iconPlayTrans = content.Load<Texture2D>("Images/iconPlayTranslucent");
             iconRestart = content.Load<Texture2D>("Images/iconRestart");
             iconRestartTrans = content.Load<Texture2D>("Images/iconRestartTranslucent");
+
+            numbers = content.Load<Texture2D>("Images/numbers");
+            numbersTrans = content.Load<Texture2D>("Images/numbersTranslucent");
         }
 
         public Texture2D GetIconPause(bool translucent)
@@ -51,6 +55,11 @@ namespace Paddlist.Views
         public Texture2D GetIconRestart(bool translucent)
         {
             return translucent ? iconRestartTrans : iconRestart;
+        }
+
+        public Texture2D GetNumbers(bool translucent)
+        {
+            return translucent ? numbersTrans : numbers;
         }
     }
 }
