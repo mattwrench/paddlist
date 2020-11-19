@@ -57,7 +57,19 @@ namespace Paddlist.Views
             drawScore(world.Player.Score, world.Player.Side, translucent);
             drawScore(world.Enemy.Score, world.Enemy.Side, translucent);
 
+            drawIcons(translucent);
+
             spriteBatch.End();
+        }
+
+        private void drawIcons(bool translucent)
+        {
+            // Pause/play
+            spriteBatch.Draw(textures.GetIconPause(translucent), UI.PauseBounds, Color.White);
+
+            // Restart
+            spriteBatch.Draw(textures.GetIconRestart(translucent), UI.RestartBounds, Color.White);
+
         }
 
         private void drawScore(int score, Paddle.Team side, bool translucent)
