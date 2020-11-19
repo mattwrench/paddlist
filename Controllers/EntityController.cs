@@ -17,7 +17,7 @@ namespace Paddlist.Controllers
         }
 
         public abstract void Update(float dt);
-        protected abstract void boundsCheck(Entity entity); // Keep entities inside screen
+        protected abstract bool boundsCheck(Entity entity); // Keep entities inside screen; returns true if entity should be deleted
 
         // Add velocity * dt to position
         protected void setPosition(Entity entity, float dt)

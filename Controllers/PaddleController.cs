@@ -13,7 +13,7 @@ namespace Paddlist.Controllers
 
         protected abstract void setVelocity(Paddle paddle);
 
-        protected override void boundsCheck(Entity entity)
+        protected override bool boundsCheck(Entity entity)
         {
             // Top wall
             if (entity.Bounds.Y < 0)
@@ -28,6 +28,8 @@ namespace Paddlist.Controllers
                 entity.Bounds.Y = world.Height - entity.Bounds.Height;
                 entity.Position.Y = entity.Bounds.Y + entity.Bounds.Height / 2;
             }
+
+            return false; // Paddles cannot be deleted
         }
     }
 }

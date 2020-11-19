@@ -19,12 +19,14 @@ namespace Paddlist.Controllers
         {
             spawnBalls(dt);
 
-            foreach (Ball ball in world.Balls)
+            for (int i = world.Balls.Count - 1; i >= 0; i--)
             {
+                Ball ball = world.Balls[i];
                 setPosition(ball, dt);
                 ball.SetBounds();
-                boundsCheck(ball);
                 collisionDetect(ball);
+                if (boundsCheck(ball))
+                    world.Balls.RemoveAt(i);
             }
         }
 
@@ -56,22 +58,22 @@ namespace Paddlist.Controllers
             }
         }
 
-        protected override void boundsCheck(Entity entity)
+        protected override bool boundsCheck(Entity entity)
         {
+            bool delete = false;
+
             // Left wall
             if (entity.Bounds.X < 0)
             {
-                entity.Bounds.X = 0;
-                entity.Position.X = entity.Bounds.X + entity.Bounds.Width / 2;
-                entity.Velocity.X *= -1;
+                delete = true;
+                world.Enemy.Score += 1;
             }
 
             // Right wall
             else if (entity.Bounds.X + entity.Bounds.Width > world.Width)
             {
-                entity.Bounds.X = world.Width - entity.Bounds.Width;
-                entity.Position.X = entity.Bounds.X + entity.Bounds.Width / 2;
-                entity.Velocity.X *= -1;
+                delete = true;
+                world.Player.Score += 1;
             }
 
             // Top wall
@@ -90,6 +92,8 @@ namespace Paddlist.Controllers
                 entity.Position.Y = entity.Bounds.Y + entity.Bounds.Height / 2;
                 entity.Velocity.Y *= -1;
             }
+
+            return delete;
         }
     }
 }
