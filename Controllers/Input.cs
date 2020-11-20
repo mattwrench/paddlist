@@ -7,12 +7,23 @@ namespace Paddlist.Controllers
 {
     static class Input
     {
+        public static bool Pause = false;
+        public static bool Restart = false;
+
         private static KeyboardState keyboardState, lastKeyboardState;
         
         public static void Update()
         {
             lastKeyboardState = keyboardState;
             keyboardState = Keyboard.GetState();
+
+            // Look for pause
+            if (keyboardState.IsKeyDown(Keys.Space) && lastKeyboardState.IsKeyDown(Keys.Space))
+                Pause = !Pause;
+
+            // Look for restart
+            if (keyboardState.IsKeyDown(Keys.Escape) && lastKeyboardState.IsKeyDown(Keys.Escape))
+                Restart = true;
         }
 
         public static bool MovingUp
