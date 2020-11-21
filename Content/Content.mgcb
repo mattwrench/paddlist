@@ -205,27 +205,27 @@
 /processorParam:TextureFormat=Color
 /build:Images/textWinner.png
 
-#begin Sound/blip.wav
+#begin Sounds/blip.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/blip.wav
+/build:Sounds/blip.wav
 
-#begin Sound/lose.wav
+#begin Sounds/lose.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/lose.wav
+/build:Sounds/lose.wav
 
-#begin Sound/pause.wav
+#begin Sounds/pause.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/pause.wav
+/build:Sounds/pause.wav
 
-#begin Sound/win.wav
+#begin Sounds/win.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sound/win.wav
+/build:Sounds/win.wav
 
