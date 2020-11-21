@@ -8,12 +8,18 @@ namespace Paddlist.Controllers
 {
     static class Input
     {
-        public static bool Pause = false;
-        public static bool Restart = false;
+        public static bool Pause;
+        public static bool Restart;
 
         private static KeyboardState keyboardState, lastKeyboardState;
         private static MouseState mouseState, lastMouseState;
         
+        public static void Initialize()
+        {
+            Pause = false;
+            Restart = false;
+        }
+
         public static void Update()
         {
             lastKeyboardState = keyboardState;

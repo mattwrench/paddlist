@@ -34,13 +34,14 @@ namespace Paddlist
 
         protected override void Initialize()
         {
-            gameState = GameState.Ready;
-            timer = -ReadyLength; // Game starts at 0
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            gameState = GameState.Ready;
+            Input.Initialize();
+            timer = -ReadyLength; // Game starts at 0
             world = new World();
             controllers = new ControllerSet(world);
             renderer = new Renderer(graphics, world, Content);
@@ -82,14 +83,21 @@ namespace Paddlist
                     gameState = GameState.Playing;
             }
 
+            // Game over
             if (world.Player.Score >= ScoreToWin || world.Enemy.Score >= ScoreToWin)
                 gameState = GameState.GameOver;
+
+            // Restart
+            if (Input.Restart)
+                LoadContent();
         }
 
         protected override void Draw(GameTime gameTime)
         {
             renderer.Render(gameState);
-            base.Draw(gameTime);
+            {
+                base.Draw(gameTime);
+            }
         }
     }
 }
