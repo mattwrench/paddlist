@@ -15,7 +15,10 @@ namespace Paddlist
             Ready, Playing, Paused, GameOver
         }
 
+        private const float ReadyLength = 3.0f;
+
         private GameState gameState;
+        private float timer;
         private GraphicsDeviceManager graphics;
         private World world;
         private ControllerSet controllers;
@@ -30,7 +33,8 @@ namespace Paddlist
 
         protected override void Initialize()
         {
-            gameState = GameState.Playing;
+            gameState = GameState.Ready;
+            timer = -ReadyLength; // Game starts at 0
             base.Initialize();
         }
 
@@ -53,7 +57,13 @@ namespace Paddlist
 
         private void setGameState(float dt)
         {
-            // TODO
+            // Update timers
+            if (gameState == GameState.Ready || gameState == GameState.Playing)
+                timer += dt;
+
+            // Ready to Playing
+            if (gameState == GameState.Ready && timer >= 0)
+                gameState = GameState.Playing;
         }
 
         protected override void Draw(GameTime gameTime)

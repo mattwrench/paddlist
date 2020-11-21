@@ -66,7 +66,20 @@ namespace Paddlist.Views
 
         private void drawText(Paddlist.GameState gameState)
         {
-            // TODO
+            // Ready
+            if (gameState == Paddlist.GameState.Ready)
+                drawAtCenter(textures.TextReady);
+        }
+
+        // Renders texture in the middle of the screen
+        private void drawAtCenter(Texture2D texture)
+        {
+            Rectangle dest = new Rectangle(
+                world.Width / 2 - texture.Width / 2,
+                world.Height / 2 - texture.Height / 2,
+                texture.Width,
+                texture.Height);
+            spriteBatch.Draw(texture, dest, Color.White);
         }
 
         private void drawIcons(bool translucent)
