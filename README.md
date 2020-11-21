@@ -23,7 +23,7 @@ First side to score 50 points wins
 
 ### From Source
 
- 1. Clone Git repo
+ 1. Clone [GitHub repo](https://github.com/mattwrench/paddlist)
  2. Build and run project in Visual Studio
 
 ## License
