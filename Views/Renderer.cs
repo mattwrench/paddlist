@@ -34,7 +34,12 @@ namespace Paddlist.Views
 
         public void Render(Paddlist.GameState gameState)
         {
-            bool translucent = false;
+            // Set translucency
+            bool translucent;
+            if (gameState == Paddlist.GameState.Playing)
+                translucent = true;
+            else
+                translucent = false;
 
             graphicsDevice.Clear(Color.White);
 
