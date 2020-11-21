@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Paddlist.Audio;
 using Paddlist.Controllers;
 using Paddlist.Models;
 using Paddlist.Views;
@@ -45,6 +46,7 @@ namespace Paddlist
             world = new World();
             controllers = new ControllerSet(world);
             renderer = new Renderer(graphics, world, Content);
+            AudioHandler.Load(Content);
         }
 
         protected override void Update(GameTime gameTime)
