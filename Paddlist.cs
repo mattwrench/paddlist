@@ -16,6 +16,7 @@ namespace Paddlist
         }
 
         private const float ReadyLength = 3.0f;
+        private const int ScoreToWin = 50;
 
         private GameState gameState;
         private float timer;
@@ -80,6 +81,9 @@ namespace Paddlist
                 else
                     gameState = GameState.Playing;
             }
+
+            if (world.Player.Score >= ScoreToWin || world.Enemy.Score >= ScoreToWin)
+                gameState = GameState.GameOver;
         }
 
         protected override void Draw(GameTime gameTime)

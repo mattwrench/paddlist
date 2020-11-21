@@ -72,6 +72,14 @@ namespace Paddlist.Views
 
             else if (gameState == Paddlist.GameState.Paused)
                 drawAtCenter(textures.TextPaused);
+
+            else if (gameState == Paddlist.GameState.GameOver)
+            {
+                if (world.Player.Score >= world.Enemy.Score)
+                    drawAtCenter(textures.TextWinner);
+                else
+                    drawAtCenter(textures.TextLoser);
+            }
         }
 
         // Renders texture in the middle of the screen
