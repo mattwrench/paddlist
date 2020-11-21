@@ -17,7 +17,7 @@ namespace Paddlist
         }
 
         private const float ReadyLength = 3.0f;
-        private const int ScoreToWin = 1;
+        private const int ScoreToWin = 50;
 
         private GameState gameState;
         private float timer;
@@ -73,7 +73,10 @@ namespace Paddlist
             else if (gameState == GameState.Ready || gameState == GameState.Playing)
             {
                 if (Input.Pause)
+                {
                     gameState = GameState.Paused;
+                    AudioHandler.Pause.Play();
+                }
             }
 
             // Paused to Ready || Playing
@@ -86,8 +89,17 @@ namespace Paddlist
             }
 
             // Game over
-            if (world.Player.Score >= ScoreToWin || world.Enemy.Score >= ScoreToWin)
-                gameState = GameState.GameOver;
+            if (gameState != GameState.GameOver) // Prevents firing sound effects continuosly
+            {
+                if (world.Player.Score >= ScoreToWin || world.Enemy.Score >= ScoreToWin)
+                {
+                    gameState = GameState.GameOver;
+                    if (world.Player.Score >= world.Enemy.Score)
+                        AudioHandler.Win.Play();
+                    else
+                        AudioHandler.Lose.Play();
+                }
+            }
 
             // Restart
             if (Input.Restart)

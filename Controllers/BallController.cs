@@ -1,4 +1,5 @@
-﻿using Paddlist.Models;
+﻿using Paddlist.Audio;
+using Paddlist.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -49,12 +50,14 @@ namespace Paddlist.Controllers
             if (ball.Bounds.Intersects(world.Player.Bounds) && ball.Velocity.X < 0)
             {
                 ball.Velocity.X *= -1;
+                AudioHandler.Blip.Play();
             }
 
             // Enemy
             else if (ball.Bounds.Intersects(world.Enemy.Bounds) && ball.Velocity.X > 0)
             {
                 ball.Velocity.X *= -1;
+                AudioHandler.Blip.Play();
             }
         }
 
@@ -67,6 +70,7 @@ namespace Paddlist.Controllers
             {
                 delete = true;
                 world.Enemy.Score += 1;
+                AudioHandler.Blip.Play();
             }
 
             // Right wall
@@ -74,6 +78,7 @@ namespace Paddlist.Controllers
             {
                 delete = true;
                 world.Player.Score += 1;
+                AudioHandler.Blip.Play();
             }
 
             // Top wall
@@ -83,6 +88,7 @@ namespace Paddlist.Controllers
                 entity.Bounds.Y = 0;
                 entity.Position.Y = entity.Bounds.Y + entity.Bounds.Height / 2;
                 entity.Velocity.Y *= -1;
+                AudioHandler.Blip.Play();
             }
 
             // Bottom wall
@@ -91,6 +97,7 @@ namespace Paddlist.Controllers
                 entity.Bounds.Y = world.Height - entity.Bounds.Height;
                 entity.Position.Y = entity.Bounds.Y + entity.Bounds.Height / 2;
                 entity.Velocity.Y *= -1;
+                AudioHandler.Blip.Play();
             }
 
             return delete;
