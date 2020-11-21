@@ -18,11 +18,11 @@ namespace Paddlist.Controllers
             keyboardState = Keyboard.GetState();
 
             // Look for pause
-            if (keyboardState.IsKeyDown(Keys.Space) && lastKeyboardState.IsKeyDown(Keys.Space))
+            if (keyboardState.IsKeyDown(Keys.Space) && !lastKeyboardState.IsKeyDown(Keys.Space))
                 Pause = !Pause;
 
             // Look for restart
-            if (keyboardState.IsKeyDown(Keys.Escape) && lastKeyboardState.IsKeyDown(Keys.Escape))
+            if (keyboardState.IsKeyDown(Keys.Escape) && !lastKeyboardState.IsKeyDown(Keys.Escape))
                 Restart = true;
         }
 

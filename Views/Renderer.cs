@@ -69,6 +69,9 @@ namespace Paddlist.Views
             // Ready
             if (gameState == Paddlist.GameState.Ready)
                 drawAtCenter(textures.TextReady);
+
+            else if (gameState == Paddlist.GameState.Paused)
+                drawAtCenter(textures.TextPaused);
         }
 
         // Renders texture in the middle of the screen

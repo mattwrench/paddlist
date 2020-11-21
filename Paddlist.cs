@@ -64,6 +64,22 @@ namespace Paddlist
             // Ready to Playing
             if (gameState == GameState.Ready && timer >= 0)
                 gameState = GameState.Playing;
+
+            // Ready || Playing to Paused
+            else if (gameState == GameState.Ready || gameState == GameState.Playing)
+            {
+                if (Input.Pause)
+                    gameState = GameState.Paused;
+            }
+
+            // Paused to Ready || Playing
+            else if (gameState == GameState.Paused && !Input.Pause)
+            {
+                if (timer < 0)
+                    gameState = GameState.Ready;
+                else
+                    gameState = GameState.Playing;
+            }
         }
 
         protected override void Draw(GameTime gameTime)
