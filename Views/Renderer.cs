@@ -57,7 +57,7 @@ namespace Paddlist.Views
             drawScore(world.Player.Score, world.Player.Side, translucent);
             drawScore(world.Enemy.Score, world.Enemy.Side, translucent);
 
-            drawIcons(translucent);
+            drawIcons(translucent, gameState);
 
             drawText(gameState);
 
@@ -93,10 +93,14 @@ namespace Paddlist.Views
             spriteBatch.Draw(texture, dest, Color.White);
         }
 
-        private void drawIcons(bool translucent)
+        private void drawIcons(bool translucent, Paddlist.GameState gameState)
         {
             // Pause/play
-            spriteBatch.Draw(textures.GetIconPause(translucent), UI.PauseBounds, Color.White);
+            if (gameState == Paddlist.GameState.Ready || gameState == Paddlist.GameState.Playing)
+                spriteBatch.Draw(textures.GetIconPause(translucent), UI.PauseBounds, Color.White);
+            else if (gameState == Paddlist.GameState.Paused)
+                spriteBatch.Draw(textures.GetIconPlay(translucent), UI.PauseBounds, Color.White);
+            // No pause or play icon during GameOver
 
             // Restart
             spriteBatch.Draw(textures.GetIconRestart(translucent), UI.RestartBounds, Color.White);

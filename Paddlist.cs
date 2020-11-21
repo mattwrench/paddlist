@@ -16,7 +16,7 @@ namespace Paddlist
         }
 
         private const float ReadyLength = 3.0f;
-        private const int ScoreToWin = 50;
+        private const int ScoreToWin = 1;
 
         private GameState gameState;
         private float timer;
