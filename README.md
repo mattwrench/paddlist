@@ -17,7 +17,7 @@ First side to score 50 points wins
 
 ### From Binary
 
- 1. Download Paddlist.zip from http://mattwrench.com/files/paddlist
+ 1. Download Paddlist.zip from http://mattwrench.com/files/paddlist.zip
  2. Extract files
  3. Run Paddlist.exe
 
